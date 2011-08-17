@@ -202,8 +202,12 @@ article footer span:hover {
 	opacity: 0.8;
 }
 
+#message {
+	margin-bottom: 40px;
+}
+
 nav {
-	margin: 0 auto 40px;
+	margin: -30px auto 40px;
 }
 
 nav ul {
