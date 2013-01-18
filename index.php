@@ -1,5 +1,5 @@
 <?php
-define('VERSION', '0.9.4');
+define('VERSION', '0.9.5');
 if (!file_exists('config.php'))
 	die('Write down your information and setting in "config-sample.php" then save it as "config.php" first.');
 else
@@ -251,6 +251,7 @@ if (!empty($_POST) && isset($_POST['action'])) {
 			$sth->fetch();
 			if ($admin || (!empty($password) && $password == hash('sha256', $_POST['password']))) {
 				$db->exec('DELETE FROM post WHERE id = '.$_POST['id']);
+				$db->exec('DELETE FROM post WHERE reply = '.$_POST['id']);
 				header('location: '.URL);
 			} else {
 				hint('Wrong Password!');
@@ -442,7 +443,7 @@ function url_input($url) {
 }
 
 function add_link($str) {
-	$str = preg_replace('#(http|https|ftp|telnet)://([0-9a-z\.\-]+)(:?[0-9]*)([0-9a-z\_\/\?\&\=\%\.\;\#\-\~\+]*)#i','<a href="\1://\2\3\4" rel="nofollow">\1://\2\3\4</a>', $str);
+	$str = preg_replace('#(http|https|ftp|telnet)://([0-9a-z\.\-]+)(:?[0-9]*)([0-9a-z\_\/\?\&\=\%\.\;\#\-\~\+\(\)\!]*)#i','<a href="\1://\2\3\4" rel="nofollow">\1://\2\3\4</a>', $str);
 	return $str;
 }
 

@@ -63,7 +63,7 @@ catch (PDOException $e) {
 if (filesize(DATABASE) == 0) {	// Initialize Database
 	$db->exec("
 	CREATE TABLE post(
-		id INTEGER PRIMARY KEY,
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		reply INTEGER,
 		title TEXT,
 		datetime TEXT,
